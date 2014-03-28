@@ -1,0 +1,17 @@
+<h1>Blocky</h1>
+
+<h2>Global Content Blocks</h2>
+<ul>
+  <% @global_content_blocks.each do |content_block| %>
+    <li><%= content_block.name %></li>
+  <% end %>
+</ul>
+
+<h2>Content Blocks by Page</h2>
+
+<% @content_blocks.group_by{|content_block| [content_block.controller, content_block.action] }.each do |group, stuff| %>
+  Group:
+  <%= debug group %>
+  Stuff:
+  <%= debug stuff %>
+<% end %>
