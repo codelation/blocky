@@ -8,6 +8,6 @@ FactoryGirl.define do
 
   factory :global_content_block, class: Blocky::ContentBlock do
     name "phone_number"
-    content "<a href="tel:1112223333">(111) 222-3333</a>"
+    content '<a href="tel:1112223333">(111) 222-3333</a>'
   end
 end

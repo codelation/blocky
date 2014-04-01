@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blocky</title>
-  <%= stylesheet_link_tag    "blocky/application", media: "all" %>
-  <%= javascript_include_tag "blocky/application" %>
+  <title><%= page_title %></title>
+  <%= stylesheet_link_tag "blocky/application", media: "all" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<body class="<%= body_class %>">
 
 <%= yield %>
 
+<%= javascript_include_tag "blocky/application" %>
 </body>
 </html>

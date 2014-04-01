@@ -1,0 +1,30 @@
+@import "blocky/bourbon";
+@import "blocky/variables";
+@import "blocky/neat";
+
+.flash-alert,
+.flash-notice {
+  @include outer-container;
+  background-color: lighten($alert-color, 50%);
+  border: 1px solid darken($alert-color, 5%);
+  border-radius: $base-border-radius;
+  color: darken($alert-color, 5%);
+  font-weight: bold;
+  margin: 1em auto;
+  overflow: hidden;
+  padding: 0.5em 1em 0.5em 0;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+
+  i {
+    cursor: pointer;
+    float: left;
+    padding: 0.2em 1em 0;
+  }
+}
+
+.flash-notice {
+  background-color: lighten($notice-color, 40%);
+  border: 1px solid darken($notice-color, 5%);
+  color: darken($notice-color, 5%);
+}

@@ -1,17 +1,25 @@
-<h1>Blocky</h1>
+<% cache ["v1", Blocky::ContentBlock.maximum(:updated_at)] do %>
+  <h1>Blocky</h1>
 
-<h2>Global Content Blocks</h2>
-<ul>
-  <% @global_content_blocks.each do |content_block| %>
-    <li><%= content_block.name %></li>
+  <h2>Global Content Blocks</h2>
+  <ul>
+    <% @global_content_blocks.each do |content_block| %>
+      <li><%= link_to content_block.name, edit_content_block_path(content_block) %></li>
+    <% end %>
+  </ul>
+
+  <h2>Content Blocks by Page</h2>
+
+  <% @content_blocks.group_by{|content_block| [content_block.controller, content_block.action] }.each do |group, content_blocks| %>
+    <h3>
+      <i class="fa fa-times"></i>
+      <%= main_app.url_for(controller: "/#{group[0]}", action: group[1], only_path: true) %>
+    </h3>
+    <ul>
+      <% content_blocks.each do |content_block| %>
+        <li><%= link_to content_block.name, edit_content_block_path(content_block) %></li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
 
-<h2>Content Blocks by Page</h2>
-
-<% @content_blocks.group_by{|content_block| [content_block.controller, content_block.action] }.each do |group, stuff| %>
-  Group:
-  <%= debug group %>
-  Stuff:
-  <%= debug stuff %>
 <% end %>

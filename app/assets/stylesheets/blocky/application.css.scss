@@ -9,5 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require blocky/normalize
+ *= require blocky/font-awesome
+ *= require_tree ./shared
+ *= require_tree ./application
  */

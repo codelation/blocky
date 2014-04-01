@@ -14,10 +14,12 @@ Gem::Specification.new do |s|
   s.description = "Block give you the ability add editable content blocks to any template with a single view helper."
   s.licenses    = ["MIT"]
 
-  s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,db,lib,vendor}/**/*", "LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
+  s.add_dependency "cancan", "~> 1.6"
   s.add_dependency "rails", "~> 4.0"
+  s.add_dependency "sass-rails", "~> 4.0"
 
   s.add_development_dependency "awesome_print", "~> 1.2"
   s.add_development_dependency "better_errors", "~> 1.1"

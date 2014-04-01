@@ -1,6 +1,10 @@
 module Blocky
-  class ContentBlocksController < ApplicationController
+  class ContentBlocksController < Blocky::ApplicationController
     layout "blocky/application"
+
+    def edit
+      @content_block = Blocky::ContentBlock.find(params[:id])
+    end
 
     def index
       @global_content_blocks = Blocky::ContentBlock.global
