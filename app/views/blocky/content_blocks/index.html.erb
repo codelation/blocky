@@ -1,25 +1,84 @@
+<div class="breadcrumbs">
+  <%= link_to "Content Blocks", content_blocks_path %>
+</div>
+
 <% cache ["v1", Blocky::ContentBlock.maximum(:updated_at)] do %>
-  <h1>Blocky</h1>
-
-  <h2>Global Content Blocks</h2>
-  <ul>
-    <% @global_content_blocks.each do |content_block| %>
-      <li><%= link_to content_block.name, edit_content_block_path(content_block) %></li>
-    <% end %>
-  </ul>
-
-  <h2>Content Blocks by Page</h2>
-
-  <% @content_blocks.group_by{|content_block| [content_block.controller, content_block.action] }.each do |group, content_blocks| %>
-    <h3>
-      <i class="fa fa-times"></i>
-      <%= main_app.url_for(controller: "/#{group[0]}", action: group[1], only_path: true) %>
-    </h3>
-    <ul>
-      <% content_blocks.each do |content_block| %>
-        <li><%= link_to content_block.name, edit_content_block_path(content_block) %></li>
+  <table>
+    <thead>
+      <th>URL</th>
+      <th>Content Key</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @global_content_blocks.each_with_index do |content_block, index| %>
+        <tr class="global <%= index == 0 ? 'page-start' : '' %>">
+          <td class="page">
+            <% if index == 0 %>
+              All Pages
+            <% end %>
+          </td>
+          <td>
+            <code>:<%= content_block.name %></code>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_content_block_path(content_block), class: "button" %>
+          </td>
+        </tr>
       <% end %>
-    </ul>
-  <% end %>
+      <% @content_blocks.group_by{|content_block| [content_block.controller, content_block.action] }.each do |group, content_blocks| %>
+        <% content_blocks.each_with_index do |content_block, index| %>
 
+          <% page_url = main_app.url_for(controller: "/#{group[0]}", action: group[1], only_path: true) %>
+
+          <tr class="per-page <%= index == 0 ? 'page-start' : '' %>">
+            <td class="page">
+              <% if index == 0 %>
+                <%= link_to page_url, page_url, target: "_blank" %>
+              <% end %>
+            </td>
+            <td>
+              <code>:<%= content_block.name %></code>
+            </td>
+            <td>
+              <%= link_to "Edit", edit_content_block_path(content_block), class: "button" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
+
+<div class="help">
+  <h3>How to Create Content Block</h3>
+
+  <p>
+    To create a content block, simply use the <code>blocky</code> helper
+    and specify a content key in any ERB template:
+  </p>
+
+  <p>
+    <code class="code-block">
+      <span class="tag">&lt;%=</span>
+      <span class="method">blocky</span>(<span class="symbol">:contact_email</span>)
+      <span class="tag">%&gt;</span>
+    </code>
+  </p>
+
+  <p>
+    By default, using the same content key on multiple pages
+    will create a separate content block for each page. To
+    create a content block that updates across multiple pages,
+    include the <code>global</code> option when specifying the content block.
+  </p>
+
+  <p>
+    <code class="code-block">
+      <span class="tag">&lt;%=</span>
+      <span class="method">blocky</span>(<span class="symbol">:contact_email</span>,
+      <span class="symbol">global:</span>
+      <span class="keyword">true</span>)
+      <span class="tag">%&gt;</span>
+    </code>
+  </p>
+</div>

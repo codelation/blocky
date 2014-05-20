@@ -1,0 +1,19 @@
+@import "blocky/imports";
+
+body.blocky {
+  .breadcrumbs {
+    @include outer-container;
+    font-size: 1.2em;
+    margin: 1em 0 2em;
+  }
+
+  .flash-alert,
+  .flash-notice {
+    margin: 1em 2em 0;
+  }
+
+  main {
+    @include outer-container;
+    padding: 1em 2em;
+  }
+}

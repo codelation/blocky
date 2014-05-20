@@ -1,5 +1,4 @@
-@import "blocky/bourbon";
-@import "blocky/variables";
+@import "blocky/imports";
 
 $form-border-color: $base-border-color;
 $form-border-color-hover: darken($base-border-color, 10);

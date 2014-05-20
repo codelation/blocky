@@ -9,15 +9,17 @@ $header-font-family: $base-font-family;
 
 // Sizes
 $base-font-size: 16px;
+$base-padding: 14px;
 $base-line-height: $base-font-size * 1.5;
 $base-border-radius: em(3);
+$max-width: 900px;
 
 // Body Color
 $base-body-color: #fff;
 
 // Font Colors
-$base-font-color: #3e3e3e;
-$base-accent-color: #df0061;
+$base-font-color: #4f4f4f;
+$base-accent-color: #4fa1d3;
 
 // Text Link Colors
 $base-link-color: $base-accent-color;
@@ -29,3 +31,7 @@ $base-border-color: #ddd;
 // Flash Colors
 $alert-color: #db0026;
 $notice-color: #0074d9;
+
+// Button Colors
+$cancel-button-color: adjust-hue($base-accent-color, 160deg);
+$save-button-color: $base-accent-color;

@@ -1,34 +1,119 @@
-@import "blocky/bourbon";
-@import "blocky/variables";
+@import "blocky/imports";
 
 .button,
+.promise-button,
 button,
 input[type="submit"] {
   @include appearance(none);
   background-color: $base-accent-color;
-  border: 1px solid $base-accent-color;
+  border: 1px solid darken($base-accent-color, 5%);
   border-radius: $base-border-radius;
-  box-shadow: 0 0 5px 0 $base-body-color;
-  color: $base-body-color;
+  color: #fff;
   cursor: pointer;
-  display: block;
+  display: inline-block;
   font-size: $base-font-size;
   font-weight: bold;
-  padding: 0.5em 1em;
+  line-height: normal;
+  padding: (($base-padding / 2) - 1px) $base-padding ($base-padding / 2);
   text-align: center;
+  text-decoration: none;
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
   -webkit-font-smoothing: antialiased;
   @include transition(all 0.1s ease);
 
+  & > * {
+    border-radius: ($base-border-radius / 2);
+  }
+
   &:hover {
     background-color: lighten($base-accent-color, 8%);
-    border-color: lighten($base-accent-color, 8%);
+    border-color: lighten($base-accent-color, 3%);
+    color: #fff;
+    text-decoration: none;
   }
 
   &:active {
-    background-color: $base-accent-color;
-    border-color: $base-accent-color;
+    background-color: darken($base-accent-color, 10%);
+    border-color: darken($base-accent-color, 10%);
+    color: #fff;
+  }
+
+  &.cancel {
+    background-color: transparent;
+    border: 1px solid $cancel-button-color;
+    color: $cancel-button-color;
+
+    &:hover {
+      background-color: lighten($cancel-button-color, 8%);
+      border-color: lighten($cancel-button-color, 8%);
+      color: #fff;
+    }
+
+    &:active {
+      background-color: darken($cancel-button-color, 10%);
+      border: 1px solid darken($cancel-button-color, 10%);
+      color: #fff;
+    }
+  }
+
+  &.destroy {
+    background-color: #fff;
+    border-color: $alert-color;
+    color: darken($alert-color, 3%);
+    margin-right: 0;
+
+    .saving {
+      background-color: $alert-color;
+      color: $base-body-color;
+    }
+
+    .confirm {
+      background-color: $alert-color;
+    }
+
+    .yes {
+      background-color: $alert-color;
+
+      &:hover {
+        background-color: darken($alert-color, 5%);
+      }
+
+      &:active {
+        background-color: darken($alert-color, 10%);
+      }
+    }
+
+    .no {
+      background-color: #fff;
+      color: $alert-color;
+
+      &:hover {
+        color: darken($alert-color, 5%);
+      }
+
+      &:active {
+        color: darken($alert-color, 10%);
+      }
+    }
+  }
+
+  &.save {
+    background-color: $save-button-color;
+    border: 1px solid darken($save-button-color, 5%);
+    color: #fff;
+
+    &:hover {
+      background-color: lighten($save-button-color, 8%);
+      border-color: lighten($save-button-color, 3%);
+      color: #fff;
+    }
+
+    &:active {
+      background-color: darken($save-button-color, 10%);
+      border: 1px solid darken($save-button-color, 10%);
+      color: #fff;
+    }
   }
 }

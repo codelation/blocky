@@ -10,4 +10,8 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require blocky/jquery
+//= require blocky/jquery_ujs
+//= require blocky/bootstrap
+//= require blocky/summernote
 //= require_tree .

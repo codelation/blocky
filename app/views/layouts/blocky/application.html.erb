@@ -4,12 +4,17 @@
   <title><%= page_title %></title>
   <%= stylesheet_link_tag "blocky/application", media: "all" %>
   <%= csrf_meta_tags %>
+  <%= yield :head %>
 </head>
 
 <body class="<%= body_class %>">
+  <%= render partial: "layouts/blocky/flash_messages" %>
 
-<%= yield %>
+  <main>
+    <%= yield %>
+  </main>
 
 <%= javascript_include_tag "blocky/application" %>
+<%= yield :scripts %>
 </body>
 </html>

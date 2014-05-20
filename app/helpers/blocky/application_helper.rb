@@ -13,14 +13,14 @@ module Blocky
     def page_title
       page = @title
       if page
-        "#{page} • #{site_title}"
+        "#{page} | #{site_title}"
       else
         site_title
       end
     end
 
     def site_title
-      "Blocky"
+      "Manage Content"
     end
   end
 end
