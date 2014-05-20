@@ -2,15 +2,16 @@ module Blocky
   class ContentBlock < ActiveRecord::Base
     before_save :tidy_content
 
-    scope :global,   -> { where("controller IS NULL AND action IS NULL") }
-    scope :per_page, -> { where("controller IS NOT NULL AND action IS NOT NULL") }
+    scope :global,   -> { where("page_path IS NULL") }
+    scope :per_page, -> { where("page_path IS NOT NULL") }
 
     def global?
-      self.controller.nil? && self.action.nil?
+      self.page_path.nil?
     end
 
     def tidy_content
       tidy = Tidy.new({
+        char_encoding: "raw",
         doctype: "omit",
         indent: "auto",
         indent_spaces: 2,
@@ -20,7 +21,8 @@ module Blocky
         tab_size: 2,
         tidy_mark: false
       })
-      self.content = tidy.clean(self.content.strip)
+      html = tidy.clean(self.content.to_s.strip)
+      self.content = "\n" + (html.blank? ? "<p><br/></p>" : html) + "\n"
     end
 
   end

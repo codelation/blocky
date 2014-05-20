@@ -25,15 +25,12 @@
           </td>
         </tr>
       <% end %>
-      <% @content_blocks.group_by{|content_block| [content_block.controller, content_block.action] }.each do |group, content_blocks| %>
+      <% @content_blocks.group_by{|content_block| content_block.page_path }.each do |page_path, content_blocks| %>
         <% content_blocks.each_with_index do |content_block, index| %>
-
-          <% page_url = main_app.url_for(controller: "/#{group[0]}", action: group[1], only_path: true) %>
-
           <tr class="per-page <%= index == 0 ? 'page-start' : '' %>">
             <td class="page">
               <% if index == 0 %>
-                <%= link_to page_url, page_url, target: "_blank" %>
+                <%= link_to page_path, page_path, target: "_blank" %>
               <% end %>
             </td>
             <td>

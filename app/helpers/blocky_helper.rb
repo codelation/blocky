@@ -1,12 +1,10 @@
 module BlockyHelper
 
   def blocky(block_name, options={})
-    controller_name = options[:global] ? nil : controller.controller_name
-    action_name     = options[:global] ? nil : controller.action_name
+    page_path = options[:global] ? nil : request.fullpath
 
     content_block = Blocky::ContentBlock.where({
-      controller: controller_name,
-      action: action_name,
+      page_path: page_path,
       name: block_name
     }).first_or_create
 

@@ -52,6 +52,14 @@ TODO: Add example for limiting access to admin users.
 
 ## Usage
 
+Include `BlockyHelper` in your `ApplicationHelper`:
+
+```ruby
+module ApplicationHelper
+  include BlockyHelper
+end
+```
+
 To create a content block, simply use the `blocky` helper
 and specify a content key in any ERB template:
 
