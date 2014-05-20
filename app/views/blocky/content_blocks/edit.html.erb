@@ -1,8 +1,10 @@
 <%= form_for @content_block do |form| %>
   <div class="breadcrumbs">
-    <%= link_to "Content Blocks", content_blocks_path %>
-    <i class="fa fa-caret-right"></i>
-    <code>:<%= @content_block.name %></code>
+    <strong>
+      <%= link_to "Content Blocks", content_blocks_path %>
+      <i class="fa fa-caret-right"></i>
+      <code>:<%= @content_block.name %></code>
+    </strong>
   </div>
 
   <textarea name="content_block[content]" class="content-editor">
@@ -18,16 +20,18 @@
   <script>
     $(function() {
       $('.content-editor').summernote({
+        codemirror: {},
         focus: true,
         height: 400,
 
         toolbar: [
           ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['font', ['strikethrough']],
           ['fontsize', ['fontsize']],
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
-          ['height', ['height']]
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['code', ['codeview', 'fullscreen']]
         ]
       });
     });

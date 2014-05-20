@@ -3,8 +3,19 @@
 body.blocky {
   .breadcrumbs {
     @include outer-container;
+    border-bottom: 1px solid $base-border-color;
     font-size: 1.2em;
     margin: 1em 0 2em;
+    padding-bottom: 0.5em;
+
+    .fa-caret-right {
+      margin: 0 5px;
+    }
+
+    code {
+      position: relative;
+      top: -1px;
+    }
   }
 
   .flash-alert,

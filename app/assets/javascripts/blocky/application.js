@@ -14,4 +14,9 @@
 //= require blocky/jquery_ujs
 //= require blocky/bootstrap
 //= require blocky/summernote
+//= require blocky/codemirror/codemirror
+//= require blocky/codemirror/closebrackets
+//= require blocky/codemirror/overlay
+//= require blocky/codemirror/htmlmixed
+//= require blocky/codemirror/xml
 //= require_tree .

@@ -1,5 +1,5 @@
 <div class="breadcrumbs">
-  <%= link_to "Content Blocks", content_blocks_path %>
+  <strong>Content Blocks</strong>
 </div>
 
 <% cache ["v1", Blocky::ContentBlock.maximum(:updated_at)] do %>
@@ -50,7 +50,7 @@
 <% end %>
 
 <div class="help">
-  <h3>How to Create Content Block</h3>
+  <h5>How to Create Content Blocks</h5>
 
   <p>
     To create a content block, simply use the <code>blocky</code> helper

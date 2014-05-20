@@ -1,5 +1,6 @@
 module Blocky
   class ContentBlocksController < Blocky::ApplicationController
+    before_action :authorize_user
     before_action :set_content_block, only: [:edit, :update]
     layout "blocky/application"
 
@@ -20,6 +21,10 @@ module Blocky
     end
 
   private
+
+  def authorize_user
+    authorize! :manage, Blocky::ContentBlock
+  end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_content_block
