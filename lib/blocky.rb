@@ -1,4 +1,5 @@
 require "cancan"
+require "tidy"
 require "blocky/engine"
 
 module Blocky

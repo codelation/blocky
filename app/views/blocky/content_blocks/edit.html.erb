@@ -8,7 +8,7 @@
   </div>
 
   <textarea name="content_block[content]" class="content-editor">
-    <%== @content_block.content %>
+    <%== @content_block.content.blank? ? "<p><br/></p>" : @content_block.content %>
   </textarea>
   <div class="buttons">
     <%= link_to "Cancel", content_blocks_path, class: "button cancel" %>
@@ -20,7 +20,12 @@
   <script>
     $(function() {
       $('.content-editor').summernote({
-        codemirror: {},
+        codemirror: {
+          lineNumbers: true,
+          mode: 'text/html',
+          theme: 'monokai'
+        },
+
         focus: true,
         height: 400,
 

@@ -12,9 +12,13 @@ module Blocky
       @content_blocks = Blocky::ContentBlock.per_page
     end
 
+    def show
+      redirect_to action: :edit
+    end
+
     def update
       if @content_block.update(content_block_params)
-        redirect_to content_blocks_path, notice: "Content was updated successfully."
+        redirect_to content_blocks_url, notice: "Content block :#{@content_block.name} was updated successfully."
       else
         render action: :edit
       end
