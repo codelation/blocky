@@ -50,6 +50,24 @@ By default, any logged in user can create, update, and delete any content block.
 
 TODO: Add example for limiting access to admin users.
 
+## Usage
+
+To create a content block, simply use the `blocky` helper
+and specify a content key in any ERB template:
+
+```erb
+<%= blocky(:features) %>
+```
+
+By default, using the same content key on multiple pages
+will create a separate content block for each page. To
+create a content block that updates across multiple pages,
+include the `global` option when specifying the content block.
+
+```erb
+<%= blocky(:contact_email, global: true) %>
+```
+
 ## Contributing
 
 1. Fork it
