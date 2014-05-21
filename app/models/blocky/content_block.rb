@@ -21,7 +21,7 @@ module Blocky
         tab_size: 2,
         tidy_mark: false
       })
-      html = tidy.clean(self.content.to_s.strip)
+      html = tidy.clean(self.content.to_s.strip).force_encoding("utf-8")
       self.content = "\n" + (html.blank? ? "<p><br/></p>" : html) + "\n"
     end
 
