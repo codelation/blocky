@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326211453) do
+ActiveRecord::Schema.define(version: 20140521143840) do
 
   create_table "blocky_content_blocks", force: true do |t|
-    t.string   "controller"
-    t.string   "action"
     t.string   "name"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "page_path"
   end
 
 end
