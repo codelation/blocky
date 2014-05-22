@@ -41,9 +41,9 @@
         ],
 
         onImageUpload: function(files, editor, welEditable) {
-            data = new FormData();
-            data.append("file", files[0]);
-            $.ajax({
+          data = new FormData();
+          data.append("file", files[0]);
+          $.ajax({
             data: data,
             type: "POST",
             url: "../images",
