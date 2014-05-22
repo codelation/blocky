@@ -6,11 +6,8 @@ module Blocky
     def create
       if s3_bucket
         file = params[:file]
-        file_ext = File.extname file.original_filename
-        file_base = File.basename file.original_filename, file_ext
-        time = Time.now.to_i
-        file_with_time = "#{file_base}_#{time}#{file_ext}"
-        s3_object = s3_bucket.objects.create(file_with_time, file.tempfile, {
+        time_file = create_filename(file)
+        s3_object = s3_bucket.objects.create(time_file, file.tempfile, {
           acl: :public_read
         })
         render text: s3_object.public_url.to_s
@@ -35,6 +32,12 @@ module Blocky
       end
     end
 
+    def create_filename(file)
+      file_ext = File.extname file.original_filename
+      file_base = File.basename file.original_filename, file_ext
+      time = Time.now.to_i
+      file_with_time = "#{file_base}_#{time}#{file_ext}"
+    end
 
   end
 end
