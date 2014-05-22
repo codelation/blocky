@@ -1,3 +1,4 @@
+require "aws-sdk"
 require "cancan"
 require "tidy"
 require "blocky/engine"

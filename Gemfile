@@ -14,5 +14,3 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
-
-
