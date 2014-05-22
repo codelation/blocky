@@ -1,5 +1,5 @@
 module Blocky
-  class ImageController < Blocky::ApplicationController
+  class ImagesController < Blocky::ApplicationController
 
     before_action :authorize_user
 

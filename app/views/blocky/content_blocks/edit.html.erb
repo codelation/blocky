@@ -20,7 +20,6 @@
   <script>
     $(function() {
 
-
       $('.content-editor').summernote({
         codemirror: {
           lineNumbers: true,
@@ -41,14 +40,13 @@
           ['code', ['codeview', 'fullscreen']]
         ],
 
-
         onImageUpload: function(files, editor, welEditable) {
             data = new FormData();
             data.append("file", files[0]);
             $.ajax({
             data: data,
             type: "POST",
-            url: "../image",
+            url: "../images",
             cache: false,
             contentType: false,
             processData: false,

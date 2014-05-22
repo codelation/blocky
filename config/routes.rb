@@ -1,5 +1,5 @@
 Blocky::Engine.routes.draw do
   resources :content_blocks, path: "/"
-  resources :image
+  resources :images
   root to: "content_blocks#index"
 end
