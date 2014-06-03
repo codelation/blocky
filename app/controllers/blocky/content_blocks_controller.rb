@@ -42,9 +42,9 @@ module Blocky
 
   private
 
-  def authorize_user
-    authorize! :manage, Blocky::ContentBlock
-  end
+    def authorize_user
+      authorize! :manage, Blocky::ContentBlock
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_content_block
