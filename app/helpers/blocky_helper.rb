@@ -1,7 +1,7 @@
 module BlockyHelper
 
   def blocky(block_name, options={}, &block)
-    page_path = options[:global] ? nil : request.fullpath
+    page_path = options[:global] ? nil : request.path
 
     content_block = Blocky::ContentBlock.where({
       page_path: page_path,

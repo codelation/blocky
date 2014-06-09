@@ -1,8 +1,9 @@
 module Blocky
   class ContentBlocksController < Blocky::ApplicationController
     before_action :authorize_user
-    before_action :set_content_block, only: [:edit, :update]
+    before_action :set_content_block, only: [:show, :edit, :update]
     layout "blocky/application"
+    respond_to :html, :json
 
     def edit
     end
@@ -10,25 +11,40 @@ module Blocky
     def index
       @global_content_blocks = Blocky::ContentBlock.global
       @content_blocks = Blocky::ContentBlock.per_page
+
+      respond_with @content_blocks
     end
 
     def show
-      redirect_to action: :edit
+      respond_to do |format|
+        format.html { redirect_to(action: :edit) }
+        format.json
+      end
     end
 
     def update
       if @content_block.update(content_block_params)
-        redirect_to content_blocks_url, notice: "Content block :#{@content_block.name} was updated successfully."
+        respond_to do |format|
+          format.html {
+            redirect_to(content_blocks_url, notice: "Content block :#{@content_block.name} was updated successfully.")
+          }
+          format.json
+        end
       else
-        render action: :edit
+        respond_to do |format|
+          format.html {
+            render action: :edit
+          }
+          format.json
+        end
       end
     end
 
   private
 
-  def authorize_user
-    authorize! :manage, Blocky::ContentBlock
-  end
+    def authorize_user
+      authorize! :manage, Blocky::ContentBlock
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_content_block

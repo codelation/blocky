@@ -19,6 +19,7 @@
 <% content_for :scripts do %>
   <script>
     $(function() {
+
       $('.content-editor').summernote({
         codemirror: {
           lineNumbers: true,
@@ -37,8 +38,25 @@
           ['table', ['table']],
           ['insert', ['link', 'picture', 'video']],
           ['code', ['codeview', 'fullscreen']]
-        ]
+        ],
+
+        onImageUpload: function(files, editor, welEditable) {
+          data = new FormData();
+          data.append("file", files[0]);
+          $.ajax({
+            data: data,
+            type: "POST",
+            url: "../images",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(url) {
+              editor.insertImage(welEditable, url);
+            }
+          });
+        }
       });
     });
   </script>
 <% end %>
+
