@@ -2,8 +2,8 @@ module Blocky
   class ContentBlock < ActiveRecord::Base
     before_save :tidy_content
 
-    scope :global,   -> { where("page_path IS NULL") }
-    scope :per_page, -> { where("page_path IS NOT NULL") }
+    scope :global,   -> { where("page_path IS NULL").order(:name) }
+    scope :per_page, -> { where("page_path IS NOT NULL").order(:page_path) }
 
     def global?
       self.page_path.nil?
