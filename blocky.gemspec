@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,vendor}/**/*", "LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "aws-sdk", "~> 1.40"
+  s.add_dependency "aws-sdk", "~> 1.27"
   s.add_dependency "cancan", "~> 1.6"
   s.add_dependency "jbuilder", "~> 2.0"
   s.add_dependency "rails", "~> 4.0"
