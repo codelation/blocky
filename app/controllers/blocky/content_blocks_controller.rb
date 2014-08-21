@@ -28,14 +28,18 @@ module Blocky
           format.html {
             redirect_to(content_blocks_url, notice: "Content block :#{@content_block.name} was updated successfully.")
           }
-          format.json
+          format.json {
+            render action: :show
+          }
         end
       else
         respond_to do |format|
           format.html {
             render action: :edit
           }
-          format.json
+          format.json {
+            render json: @content_block.errors, status: :unprocessable_entity
+          }
         end
       end
     end

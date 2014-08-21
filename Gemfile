@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.1.1"
+ruby "2.1.2"
 
 # Declare your gem's dependencies in blocky.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
