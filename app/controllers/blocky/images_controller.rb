@@ -36,7 +36,7 @@ module Blocky
       file_ext = File.extname file.original_filename
       file_base = File.basename file.original_filename, file_ext
       time = Time.now.to_i
-      file_with_time = "#{file_base}_#{time}#{file_ext}"
+      "#{file_base}_#{time}#{file_ext}"
     end
 
   end
