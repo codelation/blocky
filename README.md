@@ -1,6 +1,5 @@
 # Blocky
 
-[![Build Status](https://travis-ci.org/codelation/blocky.png?branch=master)](https://travis-ci.org/codelation/blocky)
 [![Code Climate](https://codeclimate.com/github/codelation/blocky.png)](https://codeclimate.com/github/codelation/blocky)
 
 Blocky is a mountable `Rails::Engine` for managing editable content blocks throughout your application.
@@ -16,64 +15,43 @@ gem "blocky"
 Install the Blocky gem with Bundler:
 
 ```bash
-$ bundle install
+bundle install
 ```
 
 Use the install generator to set up Blocky:
 
 ```bash
-$ rails g blocky:install
+rails g blocky:install
 ```
 
-## Configuration
+Run the installed database migrations to add the required tables:
 
-The install generator will create `config/initializers/blocky.rb`:
-
-```ruby
-Blocky.user_class           = "User"
-Blocky.s3_access_key_id     = ENV["BLOCKY_S3_KEY"]
-Blocky.s3_secret_access_key = ENV["BLOCKY_S3_SECRET"]
-Blocky.s3_bucket            = ENV["BLOCKY_S3_BUCKET"]
+```bash
+rake db:migrate
 ```
-
-### Authentication
-
-Blocky does not include authentication because there's a good chance
-you've already added authentication to your Rails app.
-
-TODO: Add info about requirements/configuration.
-
-### Authorization
-
-Blocky uses [CanCan](https://github.com/ryanb/cancan) for authorization.
-By default, any logged in user can create, update, and delete any content block.
-
-TODO: Add example for limiting access to admin users.
 
 ## Usage
 
-Include `BlockyHelper` in your `ApplicationHelper`:
-
-```ruby
-module ApplicationHelper
-  include BlockyHelper
-end
-```
-
-To create a content block, simply use the `blocky` helper
-and specify a content key in any ERB template:
+To create a content block, simply use the `blocky` helper and specify a content key in
+your ERB template. Each content key must be unique across your entire application for
+each content block that has unique content.
 
 ```erb
-<%= blocky(:features) %>
+<%= blocky(:contact_info) %>
 ```
 
-By default, using the same content key on multiple pages
-will create a separate content block for each page. To
-create a content block that updates across multiple pages,
-include the `global` option when specifying the content block.
+You can specify a block of HTML to be loaded into the content block the first time
+the that content key is loaded. This means you won't have a bunch of empty content
+blocks in development when a new developer spins up the app for the first time.
 
 ```erb
-<%= blocky(:contact_email, global: true) %>
+<%= blocky(:product_faq) do %>
+  <h1>Frequently Asked Questions</h1>
+  <ul>
+    <li>How do I add content blocks?</li>
+    <li>How do I edit my content blocks?</li>
+  </ul>
+<% end %>
 ```
 
 ## Contributing
