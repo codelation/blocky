@@ -10,7 +10,7 @@ module Blocky
     # Install the content block helper into the main app's ApplicationHelper.
     def install_blocky_content_helper
       insert_into_file(File.join("app", "helpers", "application_helper.rb"), after: "module ApplicationHelper\n") do
-        "include BlockyHelper"
+        "  include BlockyHelper\n"
       end
     end
   end

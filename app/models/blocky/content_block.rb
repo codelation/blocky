@@ -1,14 +1,14 @@
 module Blocky
+  # A block of HTML content that can be rendered on one or multiple pages.
   class ContentBlock < ActiveRecord::Base
+    # Validations
+    validates :content_key, presence: true
+
+    # Callbacks
     before_save :tidy_content
 
-    scope :global,   -> { where("page_path IS NULL").order(:name) }
-    scope :per_page, -> { where("page_path IS NOT NULL").order(:page_path) }
-
-    def global?
-      self.page_path.nil?
-    end
-
+    # Clean up the HTML content using Tidy
+    # @see https://bitbucket.org/carldouglas/tidy
     def tidy_content
       tidy = Tidy.new(
         char_encoding:  "raw",
@@ -24,6 +24,5 @@ module Blocky
       html = tidy.clean(self.content.to_s.strip).force_encoding("utf-8")
       self.content = "\n" + (html.blank? ? "<p><br/></p>" : html) + "\n"
     end
-
   end
 end
