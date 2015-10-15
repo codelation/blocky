@@ -21,6 +21,10 @@
 
 en:
   activerecord:
+    models:
+      content_block:
+        one: Content Block
+        other: Site Content
     attributes:
       blocky/content_block:
         content_key: Unique ID

@@ -1,7 +1,5 @@
 if defined?(ActiveAdmin)
-  ActiveAdmin.register Blocky::ContentBlock, as: "Content Block" do
-    menu label: "Site Content"
-
+  ActiveAdmin.register Blocky::ContentBlock, as: "ContentBlock" do
     config.sort_order = "description_asc"
 
     controller do
