@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/codelation/blocky.png)](https://codeclimate.com/github/codelation/blocky)
 
-Blocky is a mountable `Rails::Engine` for managing editable content blocks throughout your application.
+Blocky is a Ruby gem for adding editable content blocks to a Rails project.
 
 ## Installation
 
@@ -32,6 +32,8 @@ rake db:migrate
 
 ## Usage
 
+### View Helper
+
 To create a content block, simply use the `blocky` helper and specify a content key in
 your ERB template. Each content key must be unique across your entire application for
 each content block that has unique content.
@@ -53,6 +55,17 @@ blocks in development when a new developer spins up the app for the first time.
   </ul>
 <% end %>
 ```
+
+### Active Admin
+
+Block registers the content blocks with [Active Admin](http://activeadmin.info) to
+provide the editing interface for your content blocks. Everything works best if you
+are using Active Admin and if `current_admin_user` is used to return an authenticated
+user who can manage the content blocks when signed in.
+
+If you're not using Active Admin, it should be pretty easy to create a simple interface
+for managing your content blocks. The reason the old admin interface was removed was to
+simplify the project and remove authorization methods that don't belong in this gem.
 
 ## Contributing
 
