@@ -3,25 +3,22 @@ module Blocky
   class ContentBlock < ActiveRecord::Base
     # Validations
     validates :content_key, presence: true
+    validates :description, presence: true, unless: :new_record?
 
     # Callbacks
-    before_save :tidy_content
+    before_save :encode_content
 
-    # Clean up the HTML content using Tidy
-    # @see https://bitbucket.org/carldouglas/tidy
-    def tidy_content
-      tidy = Tidy.new(
-        char_encoding:  "raw",
-        doctype:        "omit",
-        indent:         "auto",
-        indent_spaces:  2,
-        markup:         true,
-        output_xhtml:   true,
-        show_body_only: "yes",
-        tab_size:       2,
-        tidy_mark:      false
-      )
-      html = tidy.clean(self.content.to_s.strip).force_encoding("utf-8")
+    # Returns the description of the content block if it exists.
+    # The content key is used as a fallback if there is no description.
+    def display_name
+      description.blank? ? content_key : description
+    end
+
+  private
+
+    # Force encoding of the content to UTF-8 before saving.
+    def encode_content
+      html = content.to_s.strip.force_encoding("utf-8")
       self.content = "\n" + (html.blank? ? "<p><br/></p>" : html) + "\n"
     end
   end

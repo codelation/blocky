@@ -1,5 +1,4 @@
 require "rails"
-require "tidy"
 require "blocky/engine"
 
 # Blocky allows you to add editable content blocks to any template with a single view helper.
