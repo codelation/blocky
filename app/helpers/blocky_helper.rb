@@ -1,7 +1,8 @@
 # Rails view helper for rendering Blocky content inside view templates.
 module BlockyHelper
-  # Render a Blocky content block with the given content key.
-  # @param content_key [String]
+  # Render a Blocky content block with the given unique key. If a block is given, the
+  # content inside the block will be saved if it doesn't already exist for the given key.
+  # @param content_key [Symbol] The key should describe the content
   def blocky(content_key, &block)
     content_block = Blocky::ContentBlock.where(content_key: content_key).first_or_initialize
 

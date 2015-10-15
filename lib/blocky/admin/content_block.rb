@@ -1,5 +1,6 @@
 if defined?(ActiveAdmin)
   ActiveAdmin.register Blocky::ContentBlock, as: "ContentBlock" do
+    config.batch_actions = false
     config.sort_order = "description_asc"
 
     controller do
