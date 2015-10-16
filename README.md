@@ -58,7 +58,7 @@ blocks in development when a new developer spins up the app for the first time.
 
 ### Active Admin
 
-Block registers the content blocks with [Active Admin](http://activeadmin.info) to
+Blocky registers the content blocks with [Active Admin](http://activeadmin.info) to
 provide the editing interface for your content blocks. Everything works best if you
 are using Active Admin and if `current_admin_user` is used to return an authenticated
 user who can manage the content blocks when signed in.
