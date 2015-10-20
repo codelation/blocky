@@ -59,9 +59,9 @@ blocks in development when a new developer spins up the app for the first time.
 ### Active Admin
 
 Blocky registers the content blocks with [Active Admin](http://activeadmin.info) to
-provide the editing interface for your content blocks. Everything works best if you
-are using Active Admin and if `current_admin_user` is used to return an authenticated
-user who can manage the content blocks when signed in.
+provide the editing interface. Everything works best if you are using Active Admin and 
+if `current_admin_user` is used to return an authenticated user who can manage the 
+content blocks when signed in.
 
 If you're not using Active Admin, it should be pretty easy to create a simple interface
 for managing your content blocks. The reason the old admin interface was removed was to
